@@ -23,23 +23,14 @@ const Header = () => {
             <span className="logo-text">CarbonTracker</span>
           </Link>
 
-          <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
-            <Link to="/" className="nav-link">Home</Link>
-            {user ? (
-              <>
+       
+                <Link to="/login" className="nav-link">Login</Link>
+                <Link to="/register" className="nav-link">Register</Link>
                 <Link to="/dashboard" className="nav-link">Dashboard</Link>
                 <Link to="/challenges" className="nav-link">Challenges</Link>
                 <Link to="/community" className="nav-link">Community</Link>
                 <Link to="/profile" className="nav-link">Profile</Link>
-              </>
-            ) : (
-              <>
-                <Link to="/login" className="nav-link">Login</Link>
-                <Link to="/register" className="nav-link">Register</Link>
-              </>
-            )}
-          </nav>
-
+        
           {user && (
             <div className="user-menu">
               <button 
