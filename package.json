@@ -1,0 +1,34 @@
+{
+  "name": "carbon-footprint-tracker",
+  "version": "1.0.0",
+  "description": "A comprehensive carbon footprint tracking application",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\" \"npm run dev:ml\"",
+    "dev:frontend": "cd frontend && npm start",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:ml": "cd ml-service && python app.py",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install && cd ../ml-service && pip install -r requirements.txt",
+    "build": "cd frontend && npm run build",
+    "test": "npm run test:frontend && npm run test:backend",
+    "test:frontend": "cd frontend && npm test",
+    "test:backend": "cd backend && npm test",
+    "db:setup": "node database/setup.js",
+    "db:reset": "node database/setup.js --reset",
+    "check": "node check-prerequisites.js"
+  },
+  "keywords": [
+    "carbon-footprint",
+    "sustainability",
+    "environment",
+    "tracking",
+    "ml",
+    "react",
+    "nodejs"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+} 

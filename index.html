@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🌱</span>
+                <span class="logo-text">CarbonTracker</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#dashboard" class="nav-link">Dashboard</a>
+                <a href="#track" class="nav-link">Track</a>
+                <a href="#challenges" class="nav-link">Challenges</a>
+                <a href="#community" class="nav-link">Community</a>
+            </div>
+            <div class="nav-auth">
+                <button class="btn btn-outline" onclick="showLogin()">Login</button>
+                <button class="btn btn-primary" onclick="showRegister()">Sign Up</button>
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Track Your Carbon Footprint</h1>
+                    <p>Make a positive impact on the environment with personalized insights and actionable recommendations.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary btn-large" onclick="showSection('track')">Start Tracking</button>
+                        <button class="btn btn-outline btn-large" onclick="showSection('dashboard')">View Demo</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-card">
+                        <div class="card-icon">📊</div>
+                        <h3>Smart Analytics</h3>
+                        <p>Get detailed insights into your carbon footprint</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-section">
+                <div class="container">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">10,000+</div>
+                            <div class="stat-label">Active Users</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">50,000</div>
+                            <div class="stat-label">kg CO2 Saved</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Challenges Completed</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">95%</div>
+                            <div class="stat-label">User Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Your Carbon Dashboard</h2>
+                    <p>Track your progress and see your impact</p>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Current Footprint</h3>
+                        <div class="metric">
+                            <span class="metric-value">2.4</span>
+                            <span class="metric-unit">kg CO2/day</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%"></div>
+                        </div>
+                        <p class="metric-desc">Below average! Keep it up!</p>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Weekly Trend</h3>
+                        <div class="chart-container">
+                            <canvas id="weeklyChart" width="300" height="150"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Top Activities</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <span class="activity-name">Transportation</span>
+                                <span class="activity-value">45%</span>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-name">Food</span>
+                                <span class="activity-value">25%</span>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-name">Energy</span>
+                                <span class="activity-value">20%</span>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-name">Waste</span>
+                                <span class="activity-value">10%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Recommendations</h3>
+                        <div class="recommendation-list">
+                            <div class="recommendation-item">
+                                <span class="rec-icon">🚌</span>
+                                <div class="rec-content">
+                                    <h4>Use Public Transport</h4>
+                                    <p>Save 2.5kg CO2 per day</p>
+                                </div>
+                            </div>
+                            <div class="recommendation-item">
+                                <span class="rec-icon">🥗</span>
+                                <div class="rec-content">
+                                    <h4>Meatless Monday</h4>
+                                    <p>Save 1.8kg CO2 per day</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Track Section -->
+        <section id="track" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Log Your Activities</h2>
+                    <p>Track your daily activities and see their carbon impact</p>
+                </div>
+
+                <div class="tracking-form">
+                    <div class="form-group">
+                        <label for="activity-type">Activity Type</label>
+                        <select id="activity-type" class="form-input">
+                            <option value="">Select an activity</option>
+                            <option value="transport">Transportation</option>
+                            <option value="food">Food & Diet</option>
+                            <option value="energy">Energy Usage</option>
+                            <option value="waste">Waste & Recycling</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="activity-details">Activity Details</label>
+                        <input type="text" id="activity-details" class="form-input" placeholder="e.g., Drove 10km to work">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="activity-amount">Amount</label>
+                        <input type="number" id="activity-amount" class="form-input" placeholder="e.g., 10">
+                        <span class="unit-label">km / kg / kWh</span>
+                    </div>
+
+                    <button class="btn btn-primary btn-large" onclick="logActivity()">Log Activity</button>
+                </div>
+
+                <div class="recent-activities">
+                    <h3>Recent Activities</h3>
+                    <div id="activities-list" class="activities-list">
+                        <!-- Activities will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Challenges Section -->
+        <section id="challenges" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Eco Challenges</h2>
+                    <p>Complete challenges and earn points while saving the planet</p>
+                </div>
+
+                <div class="challenges-grid">
+                    <div class="challenge-card">
+                        <div class="challenge-header">
+                            <span class="challenge-icon">🚌</span>
+                            <span class="challenge-difficulty easy">Easy</span>
+                        </div>
+                        <h3>Public Transport Week</h3>
+                        <p>Use public transportation for an entire week</p>
+                        <div class="challenge-meta">
+                            <span class="challenge-duration">7 days</span>
+                            <span class="challenge-reward">+200 points</span>
+                        </div>
+                        <button class="btn btn-outline" onclick="joinChallenge(1)">Join Challenge</button>
+                    </div>
+
+                    <div class="challenge-card">
+                        <div class="challenge-header">
+                            <span class="challenge-icon">🥗</span>
+                            <span class="challenge-difficulty easy">Easy</span>
+                        </div>
+                        <h3>Meatless Monday</h3>
+                        <p>Go vegetarian for one day</p>
+                        <div class="challenge-meta">
+                            <span class="challenge-duration">1 day</span>
+                            <span class="challenge-reward">+50 points</span>
+                        </div>
+                        <button class="btn btn-outline" onclick="joinChallenge(2)">Join Challenge</button>
+                    </div>
+
+                    <div class="challenge-card">
+                        <div class="challenge-header">
+                            <span class="challenge-icon">💡</span>
+                            <span class="challenge-difficulty hard">Hard</span>
+                        </div>
+                        <h3>Energy Saver</h3>
+                        <p>Reduce home energy consumption by 20%</p>
+                        <div class="challenge-meta">
+                            <span class="challenge-duration">30 days</span>
+                            <span class="challenge-reward">+500 points</span>
+                        </div>
+                        <button class="btn btn-outline" onclick="joinChallenge(3)">Join Challenge</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section id="community" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Community</h2>
+                    <p>Connect with like-minded individuals</p>
+                </div>
+
+                <div class="community-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">2,450</div>
+                        <div class="stat-label">Community Members</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">15,200</div>
+                        <div class="stat-label">kg CO2 Saved</div>
+                    </div>
+                </div>
+
+                <div class="community-posts">
+                    <h3>Recent Posts</h3>
+                    <div class="posts-list">
+                        <div class="post-card">
+                            <div class="post-header">
+                                <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                                <div class="post-info">
+                                    <h4>Sarah Johnson</h4>
+                                    <span class="post-time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <p class="post-content">Just completed the "Meatless Monday" challenge! Saved 0.8kg CO2 today. Who else is trying plant-based meals?</p>
+                            <div class="post-actions">
+                                <button class="action-btn" onclick="likePost(1)">👍 24</button>
+                                <button class="action-btn" onclick="commentPost(1)">💬 8</button>
+                                <button class="action-btn" onclick="sharePost(1)">📤 Share</button>
+                            </div>
+                        </div>
+
+                        <div class="post-card">
+                            <div class="post-header">
+                                <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                                <div class="post-info">
+                                    <h4>Mike Chen</h4>
+                                    <span class="post-time">5 hours ago</span>
+                                </div>
+                            </div>
+                            <p class="post-content">Switched to public transport this week and already seeing a difference in my carbon footprint!</p>
+                            <div class="post-actions">
+                                <button class="action-btn" onclick="likePost(2)">👍 18</button>
+                                <button class="action-btn" onclick="commentPost(2)">💬 5</button>
+                                <button class="action-btn" onclick="sharePost(2)">📤 Share</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" class="form-input" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-large">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2>Sign Up</h2>
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="register-name">Full Name</label>
+                    <input type="text" id="register-name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" class="form-input" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-large">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
